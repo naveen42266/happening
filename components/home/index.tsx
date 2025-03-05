@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from "react-native";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"

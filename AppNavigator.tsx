@@ -6,7 +6,6 @@ import LoginScreen from "./pages/login";
 import HomeScreen from "./pages/home";
 import EventDetailsScreen from "./pages/eventDetails";
 import SelectSeatsScreen from "./pages/selectSeats";
-import StatusBarCheck from "./pages/statusBarCheck";
 import WelcomeScreen from "./pages/welcomeScreen";
 import EventsScreen from "./pages/events";
 import SettingsScreen from "./pages/settings";

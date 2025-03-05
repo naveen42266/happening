@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, ScrollView, SafeAreaView, StatusBar, Alert } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, StatusBar } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { Button, Snackbar } from "react-native-paper";
 import FooterButton from "../../components/footerButton";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-import LinearGradient from "react-native-linear-gradient";
 import RazorpayCheckout from 'react-native-razorpay';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
-import SnackbarComponent from "../../components/snackbar";
+import { Snackbar } from "react-native-paper";
 
 type EventsNavigationProp = StackNavigationProp<RootStackParamList, 'SelectSeats'>;
 
@@ -25,6 +23,12 @@ const SelectSeats = () => {
   const [selectedSeats, setSelectedSeats] = useState<Record<string, number>>({});
   const [seat, setSeat] = useState("");
   const [filter, setFilter] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [message, setMessage] = useState('')
+
+  const onToggleSnackBar = () => setVisible(!visible);
+
+  const onDismissSnackBar = () => setVisible(false);
 
   function onBack() {
     if (seat) {
@@ -104,10 +108,13 @@ const SelectSeats = () => {
       .catch((error) => {
         // Handle payment failure or user cancellation
         if (error.code === 'Payment Cancelled') {
-           <SnackbarComponent />
+          setMessage("Payment Cancelled")
+          onToggleSnackBar();
           // Alert.alert('Error', 'Payment was cancelled by the user.');
         } else {
-           <SnackbarComponent />
+          setMessage("Error in payment")
+          onToggleSnackBar();
+          // <SnackbarComponent />
           // Alert.alert('Error', `Code: ${error.code} | Description: ${error.description}`);
         }
       });
@@ -242,6 +249,13 @@ const SelectSeats = () => {
           )}
       </ScrollView>
 
+      <Snackbar
+        style={{position: "absolute", bottom: 80, right: 0, left: 0}}
+        visible={visible}
+        onDismiss={onDismissSnackBar}>
+        {message}
+      </Snackbar>
+
       {/* Fixed footer button */}
       {totalTickets > 0 && (
 
@@ -326,13 +340,6 @@ const styles = StyleSheet.create({
   row1: { flex: 1 }, // Platinum Class (1 row height)
   row2: { flex: 1.5 }, // Stage & Gold Class (2 row height)
   row3: { flex: 2 }, // Silver Class (3 row height)
-  // stage: {
-  //   backgroundColor: "#FBFBFB",
-  //   justifyContent: "flex-start",
-  //   alignItems: "center",
-  //   paddingBottom: 20
-  // },
-  // Stage styling
   stage: {
     backgroundColor: "#F1F0E9", justifyContent: "flex-start", alignItems: "center", paddingBottom: 10, borderWidth: 2,
     borderColor: "white",

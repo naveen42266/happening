@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Share, Alert, StatusBar } from "react-native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
-import FontAwesome from "react-native-vector-icons/FontAwesome"
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
-import FontAwesome6 from "react-native-vector-icons/FontAwesome6"
-import Fontisto from "react-native-vector-icons/Fontisto"
-import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import FooterButton from "../../components/footerButton";
 import AboutComponent from "../../components/eventDetails/about";
 import CrewComponent from "../../components/eventDetails/crew";
-import { Button } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
 

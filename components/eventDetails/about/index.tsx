@@ -1,4 +1,4 @@
-import { Alert, Button, Linking, StyleSheet, Text, View } from "react-native";
+import { Alert, Linking, StyleSheet, Text, View } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5"
@@ -105,7 +105,7 @@ const AboutComponent = () => {
                     <MaterialCommunityIcons name="silverware-fork-knife" color="#7A7A7A" size={24} />
                     <Ionicons name="map-sharp" size={18} color="#7A7A7A" style={{ fontWeight: "bold" }} />
                     <OpenURLButton url={"https://www.google.com/maps"}>
-                      Text
+                        Text
                     </OpenURLButton>
                 </View>
 

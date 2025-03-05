@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Logo from '../../components/welcomeScreen'; // Import the Logo component
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { RootStackParamList } from '../../types';

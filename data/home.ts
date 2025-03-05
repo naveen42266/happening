@@ -20,6 +20,7 @@ export const popular = [
 ]
 
 export const resumeBooking = [
-    { id: "1", name: "jokes in a bukker", image: "v1740930666/happening/jokesbunkker_cqntzm.png" },
-    { id: "2", name: "dance like a man", image: "v1740930665/happening/dancelikeaman_ufkq3c.png" },
+    { id: "1", name: "hukum world tour", image: "v1741179491/happening/anirudh_oxuw3o.jpg" },
+    { id: "2", name: "jokes in a bukker", image: "v1740930666/happening/jokesbunkker_cqntzm.png" },
+    { id: "3", name: "dance like a man", image: "v1740930665/happening/dancelikeaman_ufkq3c.png" },
 ]

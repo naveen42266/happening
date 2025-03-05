@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, StatusBar } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
@@ -24,7 +24,8 @@ const Login = () => {
         hidden={false}
       />
       <Image source={{ uri: IMG_BASE_URL + Happening }} style={styles.logo} />
-      <Text style={styles.loginText}>Login now to find what's happening around you</Text>
+      <Text style={{ padding: 10 }}></Text>
+      <Text style={styles.loginText} numberOfLines={2}>Login now to find what's happening around you</Text>
 
       <TextInput style={styles.input} placeholder="Email address or mobile number" />
       <TextInput style={styles.input} placeholder="Enter OTP" secureTextEntry />
@@ -42,6 +43,9 @@ const Login = () => {
       <Text style={styles.signInText}>Sign in with other accounts</Text>
 
       <View style={styles.socialIcons}>
+        <TouchableOpacity>
+          <Icon name="google" size={36} color="#1DA1F2" style={{ paddingVertical: 4, paddingHorizontal: 6, borderRadius: 20, backgroundColor: "white" }} />
+        </TouchableOpacity>
         <TouchableOpacity>
           <Icon name="instagram" size={30} color="white" style={{ paddingVertical: 4, paddingHorizontal: 6, borderRadius: 20, backgroundColor: "#E4405F" }} />
         </TouchableOpacity>
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
   socialIcons: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: 150,
+    gap: 10,
   },
 });
 

@@ -1,97 +1,203 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Event Booking App - React Native (Frontend Only)
 
-# Getting Started
+This is a **frontend-only** React Native application for booking events. It includes features like event browsing, seat selection, and a simulated payment process. The app uses **Razorpay** for payment integration and **Cloudinary** for asset management. No backend is included; all data is hardcoded or mocked.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 1. **Login Screen**
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 2. **Initial Screen**
+   - **Bottom Tabs**: Easy navigation between:
+     - **Home**: Discover featured events.
+     - **Booking**: View and manage bookings.
+     - **Search**: Search for events by name or category.
+     - **Wishlist**: Save events for later.
+     - **Account**: Mock user profile and settings.
+   - **Location Bottom Drawer**: Filter events by location (mock data).
 
-```sh
-# Using npm
-npm start
+### 3. **Events**
+   - **Events Page**: Displays a list of events with details like name, date, and location (hardcoded data).
+   - **Event Details Page**: Includes:
+     - **About**: Detailed description of the event.
+     - **Crew**: Information about performers, organizers, etc.
 
-# OR using Yarn
-yarn start
+### 4. **Seat Selection & Payment**
+   - **Select Seats**: Users can choose seats based on availability and pricing (Silver, Gold, Platinum).
+   - **Simulated Payment Integration**: Uses **Razorpay** for a mock payment process.
+
+### 5. **Asset Management**
+   - **Cloudinary**: All assets (images, videos) are hosted on Cloudinary and fetched via URLs.
+
+### 6. **Notifications**
+   - Mock notifications for booking confirmations and event reminders.
+
+---
+
+## Technologies Used
+
+- **React Native**: For building the cross-platform mobile app.
+- **React Navigation**: For handling navigation (bottom tabs, drawers, stacks).
+- **Razorpay**: For mock payment integration.
+- **Cloudinary**: For hosting and managing assets.
+- **State Management**: React's built-in `useState` and `useContext` for state management.
+- **Hardcoded Data**: Mock data for events, bookings, and user profiles.
+
+---
+
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/naveen42266/happening
+   cd happening
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   RAZORPAY_KEY=your_razorpay_key
+   ```
+
+4. **Run the App**:
+   - For Android:
+     ```bash
+     npx react-native run-android
+     ```
+   - For iOS:
+     ```bash
+     npx react-native run-ios
+     ```
+
+---
+
+## Folder Structure
+
+```
+event-booking-app/
+├── assets/               # Static assets (images, icons, etc.)
+├── components/           # Reusable components (e.g., FooterButton, Snackbar)
+├── AppNavigator.tsx      # Navigation setup 
+├── pages/                # Main app screens (e.g., Home, Events, Event Details)
+├── data/                 # Hardcoded/mock data (e.g., events, bookings)
+├── styles/               # Global styles and themes
+├── types/                # TypeScript types and interfaces
+├── App.tsx               # Main app component
+├── index.js              # Entry point
+└── README.md             # Project documentation
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Screenshots & Screen Recordings
 
-### Android
 
-```sh
-# Using npm
-npm run android
+Drive Link - https://drive.google.com/drive/u/0/folders/1X3mOPQtXthXaIjhkfuUN_nca8rrOrz9_
 
-# OR using Yarn
-yarn android
+
+---
+
+## Key Code Snippets
+
+### 1. **Mock Event Data**
+```typescript
+// data/events.ts
+export const events = [
+  {
+    id: "1",
+    name: "Concert Night",
+    date: "2023-12-25",
+    location: "New York",
+    image: "https://res.cloudinary.com/your-cloud-name/image/upload/v1631234567/concert.jpg",
+    about: "Join us for an unforgettable night of music and fun!",
+    crew: ["Artist 1", "Artist 2"],
+  },
+  // Add more events...
+];
 ```
 
-### iOS
+### 2. **Razorpay Mock Payment**
+```typescript
+const razorPay = () => {
+  const options = {
+    description: 'Event Booking Payment',
+    currency: 'INR',
+    key: process.env.RAZORPAY_KEY,
+    amount: totalPrice * 100,
+    name: 'Event Booking App',
+    prefill: {
+      email: 'user@example.com',
+      contact: '9191919191',
+      name: 'User Name',
+    },
+    theme: { color: '#7E2CCF' },
+  };
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+  RazorpayCheckout.open(options)
+    .then((data) => {
+      Alert.alert('Success', 'Payment successful!');
+    })
+    .catch((error) => {
+      if (error.code === 'Payment Cancelled') {
+        Alert.alert('Error', 'Payment was cancelled by the user.');
+      } else {
+        Alert.alert('Error', `Payment failed: ${error.description}`);
+      }
+    });
+};
 ```
 
-Then, and every time you update your native dependencies, run:
+### 3. **Bottom Tabs**
 
-```sh
-bundle exec pod install
+I thing bottom navigation is not needed here. 
+I have handled in ternary operator
+
+```typescript
+
+                {
+                    tab === "Home" ?
+                        <HomeComponent navigation={(value: any, params) => { navigation.navigate(value, params) }} />
+                        :
+                        tab === "Booking" ? <BookingComponent />
+                            :
+                            tab === "Search" ? <SearchComponent />
+                                :
+                                tab === "Wishlist" ? <WishlistComponent />
+                                    :
+                                    tab === "Account" ? <AccountComponent navigatation={(value: string) => { navigateTo(value); }} logout={() => { handleLogout() }} /> : null
+                }
+
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Contributing
 
-```sh
-# Using npm
-npm run ios
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/your-feature-name`.
+3. Commit your changes: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature/your-feature-name`.
+5. Submit a pull request.
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## License
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Step 3: Modify your app
+---
 
-Now that you have successfully run the app, let's make changes!
+## Contact
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+For any questions or feedback, please reach out:
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- **Email**: vnaveenlgp2001@gmail.com
+- **GitHub**: [naveen42266](https://github.com/naveen42266)
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Enjoy building and using the Event Booking App! 🚀

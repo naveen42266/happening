@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Entypo from "react-native-vector-icons/Entypo" //home
+import Entypo from "react-native-vector-icons/Entypo"
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons" //calendar-check-outline
-// account-circle-outline
 
 interface BottomTabsProps {
     onChangetab: (tabName: string) => void;

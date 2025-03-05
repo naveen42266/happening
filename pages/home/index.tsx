@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image, FlatList, StyleSheet, Dimensions, StatusBar, Button, Alert } from "react-native";
-import EvilIcons from "react-native-vector-icons/EvilIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons"
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { View, ScrollView, StyleSheet, StatusBar, Alert } from "react-native";
 import BottomTabs from "../../components/bottomTabs";
 import { useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -36,7 +33,6 @@ const Home = () => {
                 {
                     text: "Logout",
                     onPress: async () => {
-                        //     await AsyncStorage.removeItem("userToken"); // Clear user token
                         navigation.navigate("Login"); // Navigate to Login screen
                     },
                 },
@@ -54,7 +50,6 @@ const Home = () => {
                 hidden={false}
             />
             <ScrollView style={styles.content}>
-
                 {
                     tab === "Home" ?
                         <HomeComponent navigation={(value: any, params) => { navigation.navigate(value, params) }} />
@@ -67,9 +62,7 @@ const Home = () => {
                                     :
                                     tab === "Account" ? <AccountComponent navigatation={(value: string) => { navigateTo(value); }} logout={() => { handleLogout() }} /> : null
                 }
-
             </ScrollView>
-
 
             <BottomTabs onChangetab={(tabName: string) => { setTab(tabName) }} />
         </View>
