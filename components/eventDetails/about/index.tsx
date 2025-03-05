@@ -14,7 +14,7 @@ type OpenURLButtonProps = {
 };
 
 const AboutComponent = () => {
-    const [like, setLike] = useState(true);
+    const [like, setLike] = useState(false);
 
     const OpenURLButton = ({ url, children }: OpenURLButtonProps) => {
         const handlePress = useCallback(async () => {
@@ -105,7 +105,7 @@ const AboutComponent = () => {
                     <MaterialCommunityIcons name="silverware-fork-knife" color="#7A7A7A" size={24} />
                     <Ionicons name="map-sharp" size={18} color="#7A7A7A" style={{ fontWeight: "bold" }} />
                     <OpenURLButton url={"https://www.google.com/maps"}>
-                        Text
+                        4kms nearby
                     </OpenURLButton>
                 </View>
 

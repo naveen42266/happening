@@ -2,6 +2,20 @@
 
 This is a **frontend-only** React Native application for booking events. It includes features like event browsing, seat selection, and a simulated payment process. The app uses **Razorpay** for payment integration and **Cloudinary** for asset management. No backend is included; all data is hardcoded or mocked.
 
+
+You download and use (Platform: Android)
+APK - https://drive.google.com/file/d/1tBlUCKfSiv_Da1X1xvkSpRqjlRsAwPEW/view?usp=sharing
+
+While installing go with install anyway without google play store scanning.
+
+
+Note: As I am working on a Windows machine, I am unable to generate a TestFlight link or .ipa file for iOS. However, I have attached the following for your review:
+
+
+Screenshots and Screen Recording of the app -
+https://drive.google.com/drive/folders/1dViLzEPJmdeXVI9sgOB6dU-92gO8Z1FM?usp=sharing
+
+
 ---
 
 ## Features

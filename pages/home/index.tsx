@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, ScrollView, StyleSheet, StatusBar, Alert } from "react-native";
 import BottomTabs from "../../components/bottomTabs";
-import { useNavigation } from "@react-navigation/native"; // Import useNavigation
+import { CommonActions, useNavigation } from "@react-navigation/native"; // Import useNavigation
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
 import HomeComponent from "../../components/home";
@@ -33,7 +33,14 @@ const Home = () => {
                 {
                     text: "Logout",
                     onPress: async () => {
-                        navigation.navigate("Login"); // Navigate to Login screen
+                        navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0, // Reset to the first (and only) route
+                                routes: [
+                                    { name: 'Home' }, // Set Home as the only route in the stack
+                                ],
+                            })
+                        ); // Navigate to Home screen
                     },
                 },
             ]

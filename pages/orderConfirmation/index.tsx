@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types"; // Adjust the import path as needed
+import { CommonActions } from '@react-navigation/native';
 
 type OrderConfirmationNavigationProp = StackNavigationProp<RootStackParamList, 'OrderConfirmation'>;
 
@@ -10,7 +11,14 @@ const OrderConfirmation = () => {
     const navigation = useNavigation<OrderConfirmationNavigationProp>();
 
     const handleDone = () => {
-        navigation.navigate("Home"); // Navigate to Home screen
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 0, // Reset to the first (and only) route
+                routes: [
+                    { name: 'Home' }, // Set Home as the only route in the stack
+                ],
+            })
+        ); // Navigate to Home screen
     };
 
     return (

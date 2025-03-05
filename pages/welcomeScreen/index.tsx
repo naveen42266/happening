@@ -12,7 +12,7 @@ const WelcomeScreen = () => {
     const navigation = useNavigation<WelcomeScreenNavigationProp>(); // Get navigation object
 
     setTimeout(() => {
-        navigation.navigate("Login");
+        navigation.replace("Login");
     }, 3000);
 
     return (

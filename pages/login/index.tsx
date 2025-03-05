@@ -14,6 +14,10 @@ const Login = () => {
   const navigation = useNavigation<LoginNavigationProp>(); // Get navigation object
   const Happening = "v1740920897/happening/Happening_besy9i.png";
 
+  const onNavigate = () => {
+    navigation.replace("Home")
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -35,7 +39,7 @@ const Login = () => {
       </TouchableOpacity>
 
       {/* Navigate to Home on Click */}
-      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Home")}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => onNavigate()}>
         <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
 
